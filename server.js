@@ -30,19 +30,22 @@ app.get('/api/notes', (req, res) => {
 })
 
 app.post('/api/notes', (req, res) => {
-    const newNote = JSON.stringify(req.body);
-    const pastNotes = Object.keys(notes).map(key => {
-        return notes[key];
-    });
-    console.log(pastNotes);
+    // store user input in variable
+    var newNote = JSON.stringify(req.body);
+    
+    // push that input into the already created notes
+    newNote = JSON.parse(newNote);
+    const pastNotes = notes;
     pastNotes.push(newNote);
-    fs.writeFile('./Develop/db/db.json', pastNotes, err => {
+
+    // write the db.json with all current notes
+    fs.writeFile('./Develop/db/db.json', JSON.stringify(pastNotes), err => {
         if (err) {
             console.log(err);
         } else {
             console.log('written');
         }
-    })
+    });
     res.send('success');
 })
 
