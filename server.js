@@ -53,10 +53,6 @@ app.post("/api/notes", (req, res) => {
   res.send("success");
 });
 
-// app.get("/api/notes:id", (req, res) => {
-//   console.log(req.body.id);
-// });
-
 app.listen(PORT, () => {
   console.log(`Listening on Port ${PORT}!`);
 });
